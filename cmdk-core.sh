@@ -66,9 +66,11 @@ for output in "${output_paths[@]}"; do
 done
 
 # We can open open_targets here (no need to pass them to the parent)
-for open_target_filepath in "${open_targets[@]}"; do
-    open "${open_target_filepath}"
-done
+if [ "${#open_targets[@]}" -gt 0 ]; then
+    for open_target_filepath in "${open_targets[@]}"; do
+        open "${open_target_filepath}"
+    done
+fi
 
 # However, text files & dirs need to be passed to the parent, so they
 # get run in the user's shell process (and not this subprocess)
